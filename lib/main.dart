@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:greenchargehub/auth/mobile.dart';
 import 'package:greenchargehub/home_page.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Sizer(
-      builder: (context, orientation, deviceType) => MaterialApp(
+      builder: (context, orientation, deviceType) => GetMaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           // This is the theme of your application.
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: const AuthPage(),
+        home: const HomePage(),
         // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       ),
     );
