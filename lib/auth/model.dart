@@ -14,12 +14,11 @@ class Booking {
   final String phone;
   final String address;
   final String stationName;
-  final int price;
+  final String price;
   final String time;
-  final DateTime date;
+  final String date;
   final String admin;
-  final String id;
-  final int v;
+
 
   Booking({
     required this.name,
@@ -30,8 +29,7 @@ class Booking {
     required this.time,
     required this.date,
     required this.admin,
-    required this.id,
-    required this.v,
+
   });
 
   factory Booking.fromJson(Map<String, dynamic> json) => Booking(
@@ -41,10 +39,9 @@ class Booking {
     stationName: json["stationName"],
     price: json["price"],
     time: json["time"],
-    date: DateTime.parse(json["date"]),
+    date: json["date"],
     admin: json["admin"],
-    id: json["_id"],
-    v: json["__v"],
+
   );
 
   Map<String, dynamic> toJson() => {
@@ -54,9 +51,8 @@ class Booking {
     "stationName": stationName,
     "price": price,
     "time": time,
-    "date": "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
+    "date": date,
     "admin": admin,
-    "_id": id,
-    "__v": v,
+
   };
 }

@@ -13,11 +13,12 @@ class AuthHelper {
     };
 
     var url = Uri.https(
-        "https://apicodehub.vercel.app/api/liveevents/insertData");
+        "apicodehub.vercel.app", "/api/liveevents/insertData");
+
     var response = await client.post(url,
         headers: requestHeaders, body: jsonEncode(model));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       print(response.body);
       return true;
     } else {

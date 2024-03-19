@@ -1,10 +1,14 @@
+import 'package:get/get.dart';
 import 'package:greenchargehub/consts.dart';
 import 'package:greenchargehub/widgets/battery.dart';
 import 'package:greenchargehub/widgets/closest_charging_banner.dart';
+import 'package:greenchargehub/widgets/nearest_location_item.dart';
 import 'package:greenchargehub/widgets/total_distance.dart';
 import 'package:greenchargehub/widgets/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer_pro/sizer.dart';
+
+import 'near_location_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,7 +24,7 @@ class _HomePageState extends State<HomePage> {
       
       appBar: AppBar(
         backgroundColor: Colors.greenAccent.shade700,
-        title: const Text("Find EV Charging"),
+        title: const Text("Green Charge Hub"),
       ),
       drawer: Drawer(
         child: ListView(
@@ -31,7 +35,7 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.blue,
               ),
               child: Text(
-                'Drawer Header',
+                'Hello',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -47,8 +51,23 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
+              leading: const Icon(Icons.safety_check),
+              title: const Text('Find Stations List'),
+              onTap: () {
+              Get.to(()=>NearLocationPage());
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.map),
+              title: const Text('Find in Map'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                // Add navigation logic here
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.outbound_outlined),
+              title: const Text('Log Out'),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
                 // Add navigation logic here
