@@ -1,6 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:greenchargehub/auth/model.dart';
+import 'package:provider/provider.dart';
+
+import '../auth/controller.dart';
 
 class BookingScreen extends StatefulWidget {
   final String admin;
@@ -90,7 +94,6 @@ class _BookingScreenState extends State<BookingScreen> {
               _buildInputField('Price', 'price'),
               _buildInputField('Time', 'time'),
               _buildInputField('Date', 'date'),
-              _buildInputField('Admin', 'admin'),
               SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
@@ -123,9 +126,37 @@ class _BookingScreenState extends State<BookingScreen> {
     );
   }
 
-  void _saveBookingData() {
-    // Here you can implement logic to save the booking data
-    // For demonstration purposes, we'll print the data
-    print(bookingData);
+  void _saveBookingData() async {
+    // Retrieve values from bookingData map
+    String name = bookingData['name'];
+    String phone = bookingData['phone'];
+    String address = bookingData['address'];
+    String stationName = bookingData['stationName'];
+    String price = bookingData['price'];
+    String time = bookingData['time'];
+    String date = bookingData['date'];
+    String admin = bookingData['admin'];
+    String id = bookingData['_id'];
+    int v = bookingData['__v'];
+
+    // Create a new instance of Booking model
+    Booking booking = Booking(
+      name: name,
+      phone: phone,
+      address: address,
+      stationName: stationName,
+      price: price,
+      time: time,
+      date: date,
+      admin: admin,
+    );
+
+    final mentorNotifier = Provider.of<OnBoardNotifier>(context, listen: false);
+    await mentorNotifier.userconfslots(booking);
+
+
+
+
+    // Now you can use the 'booking' object as needed, such as saving it to a database or performing other operations.
   }
 }

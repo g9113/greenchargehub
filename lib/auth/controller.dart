@@ -10,12 +10,17 @@ class OnBoardNotifier extends ChangeNotifier {
 
   userconfslots(Booking model) {
     AuthHelper.booking(model).then((response) {
+
       if (response) {
+        Get.back();
+        print(response);
         Get.snackbar("done", "Your are done");
       } else if (!response) {
         Get.snackbar("error", "error");
       }
     }).catchError((error) {
+      print(model.toJson());
+      print(error);
       Get.snackbar(' failed', 'Invalid');
     });
   }
